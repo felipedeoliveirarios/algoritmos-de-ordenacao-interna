@@ -4,6 +4,7 @@ from main import notificar
 def startMergesort(lista):
 	mergesort(lista, 0, len(lista))
 
+
 # Implementação recursiva do Merge Sort
 def mergesort(lista, inicio, fim):
 
@@ -19,9 +20,6 @@ def mergesort(lista, inicio, fim):
 
 # Realiza a fusão de duas sublistas de forma ordenada.
 def merge(lista, inicio, meio, fim):
-
-	# Garante que o valor da variável lista seja alterado fora da função.
-	global lista
 
 	# Cria uma lista onde serão inseridos os valores ordenados.
 	listaExtra = lista
@@ -46,7 +44,7 @@ def merge(lista, inicio, meio, fim):
 			# Itera o índice da primeira lista.
 			indice1 += 1
 			# Notifica a movimentação para controle de desempenho.
-			notificar("mov")
+			notificar("mov", 1)
 		
 		# Caso o item da segunda lista seja maior que o da primeira...
 		else:
@@ -55,14 +53,17 @@ def merge(lista, inicio, meio, fim):
 			# Itera o índice da segunda lista.
 			indice2 += 1
 			# Notifica a movimentação para controle de desempenho.
-			notificar("mov")
+			notificar("mov", 1)
 
 		# Notifica a comparação entre elementos para controle de desempenho.
-		notificar("comp")
+		notificar("comp", 1)
 		# Itera o índice da lista extra.
 		indice3 += 1
 
-	# Caso uma das listas tenha sido exaurida, a outra será colocada diretamente dentro da lista extra.
+	"""
+	Caso uma das listas tenha sido exaurida, a outra será colocada
+	diretamente dentro da lista extra.
+	"""
 	while indice1 < meio:
 		listaExtra[indice3] = lista[indice1]
 		indice1 += 1
