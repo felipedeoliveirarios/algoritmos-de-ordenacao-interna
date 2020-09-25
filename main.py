@@ -4,7 +4,7 @@ import insertionsort.py
 
 métricas = []
 
-def notificar(indice, valor)
+def notificar(indice, valor):
 	if indice == "comp":
 		global métricas
 		métricas["comp"] += valor

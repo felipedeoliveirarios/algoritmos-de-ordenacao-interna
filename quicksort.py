@@ -16,5 +16,6 @@ def partition(lista, inicio, fim):
             lista[j], lista[i] = lista[i], lista[j]
             i += 1
             notificar("mov", 1)
+    # Coloca o Pivô no lugar
     lista[i], lista[fim] = lista[fim], lista[inicio]
     return i
