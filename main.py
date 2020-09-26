@@ -1,6 +1,7 @@
 import csv
-import mergesort.py
-import insertionsort.py
+import mergesort
+import insertionsort
+import quicksort
 
 métricas = []
 
