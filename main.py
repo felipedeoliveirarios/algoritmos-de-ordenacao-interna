@@ -8,7 +8,7 @@ from pathlib import Path, PureWindowsPath
 from tabulate import tabulate
 
 global metricas
-metricas = {}
+metricas = {'comp':0, 'mov':0}
 
 def notificar(indice, valor):
 	global metricas
