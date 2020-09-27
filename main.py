@@ -1,8 +1,9 @@
 import csv
-import mergesort
-import insertionsort
-import quicksort
-import csv
+from csv import DictReader
+from mergesort import startMergesort
+from insertionsort import startInsertionsort
+from quicksort import quicksort
+import tabulate
 
 métricas = []
 
@@ -47,11 +48,11 @@ def main():
 			print("2. decrescente.csv")
 			print("3. random.csv")
 			print("0. Voltar ao menu anterior")
-			file = input()
+			file_index = input()
 
-			if file == 0:
+			if file_index == 0:
 				continue
-			elif file < 0 or file > 3:
+			elif file_index < 0 or file_index > 3:
 				print("Opção inválida.")
 			else:
 				print("Digite a opção do algoritmo de ordenação")
@@ -70,33 +71,41 @@ def main():
 		else:
 			print("Opção inválida.")
 
-	file_name = "datasets_prontos/"
+		file_name = "datasets_prontos/"
 
-	if folder == 1:
-		file_name += "1000/"
-	elif folder == 2:
-		file_name += "2000/"
-	elif folder == 3:
-		file_name += "3000/"
-	else:
-		file_name += "4000/"
+		if folder == 1:
+			file_name += "1000/"
+		elif folder == 2:
+			file_name += "2000/"
+		elif folder == 3:
+			file_name += "3000/"
+		else:
+			file_name += "4000/"
 
-	if file == 1:
-		file_name += "crescente.csv"
-	elif file == 2:
-		file_name += "decrescente.csv"
-	else:
-		file_name += "random.csv"
+		if file_index == 1:
+			file_name += "crescente.csv"
+		elif file_index == 2:
+			file_name += "decrescente.csv"
+		else:
+			file_name += "random.csv"
+
+		with open(Path(file_name)) as file:
+			data = DictReader(file)
+
+			if algo == 1:
+				startInsertionsort(data)
+			elif algo == 2:
+				startMergesort(data)
+			elif algo == 3:
+				quicksort(data)
+			else:
+				# selectionsort(data)
+
+			header = data[0].keys()
+			rows = [x.values() for x in data]
+			print(tabulate.tabulate(rows, header))
 
 
-		"""
-		Oferece a escolha de arquivo
-		Lê o arquivo como lista de dicts (https://thispointer.com/python-read-csv-into-a-list-of-lists-or-tuples-or-dictionaries-import-csv-to-list/)
-		Oferece a escolha do algoritmo
-		Usa o algoritmo de ordenação
-		Exibe a lista de dados ordenados
-		Pergunta se quer sair ou inserir outro arquivo
-		"""
 
 # Executa a função main() diretamente caso o programa seja executado no terminal
 if __name__ == "__main__":

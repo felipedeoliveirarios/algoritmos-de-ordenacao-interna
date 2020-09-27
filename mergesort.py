@@ -75,4 +75,4 @@ def merge(lista, inicio, meio, fim):
 		indice3 += 3
 
 	# Por fim, a lista inicial assume os valores da lista extra.
-	lista = listaExtra
+ 		lista = listaExtra
