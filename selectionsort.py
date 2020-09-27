@@ -1,25 +1,11 @@
 from main import notificar
 
-# Python program for implementation of Selection 
-# Sort 
-import sys 
-A = [64, 25, 12, 22, 11] 
+def sort(array):
+    for index in range(0, len(array)):
+        min_index = index
 
-# Traverse through all array elements 
-for i in range(len(A)): 
-	
-	# Find the minimum element in remaining 
-	# unsorted array 
-	min_idx = i 
-	for j in range(i+1, len(A)): 
-		if A[min_idx] > A[j]: 
-			min_idx = j 
-			
-	# Swap the found minimum element with 
-	# the first element		 
-	A[i], A[min_idx] = A[min_idx], A[i] 
+        for right in range(index + 1, len(array)):
+            if array[right] < array[min_index]:
+                min_index = right
 
-# Driver code to test above 
-print ("Sorted array") 
-for i in range(len(A)): 
-	print("%d" %A[i]), 
+        array[index], array[min_index] = array[min_index], array[index]

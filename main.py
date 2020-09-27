@@ -2,6 +2,7 @@ import csv
 import mergesort
 import insertionsort
 import quicksort
+import selectionsort
 import csv
 
 métricas = []
