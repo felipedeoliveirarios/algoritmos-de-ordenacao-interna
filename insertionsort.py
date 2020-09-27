@@ -40,6 +40,7 @@ def insertionsort(lista):
 				partir de novaLista[indiceNL] para frente).
 				"""
 				novaLista.insert(indiceNL, lista[indice])
+				main.notificar("mov", 1)
 				# Para de percorrer a nova lista
 				break
 
@@ -50,6 +51,7 @@ def insertionsort(lista):
 			if indiceNL == len(novaLista)-1:
 				# O elemento é adicionado no fim
 				novaLista.append(indiceNL, lista[indice])
+				main.notificar("mov", 1)
 
 
 			# fim if

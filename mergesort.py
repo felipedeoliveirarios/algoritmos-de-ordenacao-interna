@@ -1,8 +1,10 @@
 # coding: utf-8
 import main
+import sys
 
 # Função de início do Merge Sort sobre uma lista
 def startMergesort(lista):
+	sys.setrecursionlimit(10**6)
 	mergesort(lista, 0, len(lista))
 
 
@@ -34,11 +36,15 @@ def merge(lista, inicio, meio, fim):
 	while indice1 < meio and indice2 < fim:
 		
 		# Concatena nome e sobrenome para usar na ordenação
-		nome1 = lista[indice1].first_name + " " + lista[indice1].last_name
-		nome2 = lista[indice2].first_name + " " + lista[indice2].last_name
+		nome1 = lista[indice1]["first_name"] + " " + lista[indice1]["last_name"]
+		nome2 = lista[indice2]["first_name"] + " " + lista[indice2]["last_name"]
 		
 		# Compara as strings contendo nome e sobrenome.
 		# Caso o item da primeira lista seja maior ou igual que da segunda...
+
+		# Notifica a comparação entre elementos para controle de desempenho.
+		main.notificar("comp", 1)
+
 		if nome1 >= nome2:
 			# Insere o item da primeira lista na lista extra.
 			listaExtra[indice3] = lista[indice1]
@@ -56,8 +62,6 @@ def merge(lista, inicio, meio, fim):
 			# Notifica a movimentação para controle de desempenho.
 			main.notificar("mov", 1)
 
-		# Notifica a comparação entre elementos para controle de desempenho.
-		main.notificar("comp", 1)
 		# Itera o índice da lista extra.
 		indice3 += 1
 
