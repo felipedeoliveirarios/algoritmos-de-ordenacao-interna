@@ -11,9 +11,16 @@ def quicksort(lista, inicio = 0, fim = None):
 
 def partition(lista, inicio, fim):
     pivo = lista[fim]
+    nome_pivo = lista[fim]["first_name"] + " " + lista[fim]["last_name"]
+
     i = inicio
     for j in range(inicio, fim):
-        if lista[j] <= pivo:
+
+        auxiliar = lista[j]["first_name"] + " " + lista[j]["last_name"]
+
+        main.notificar("comp", 1)
+
+        if auxiliar <= nome_pivo:
             lista[j], lista[i] = lista[i], lista[j]
             i += 1
             main.notificar("mov", 1)
