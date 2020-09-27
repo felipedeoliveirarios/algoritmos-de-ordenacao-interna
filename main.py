@@ -1,25 +1,27 @@
+# coding: utf-8
 import csv
 from csv import DictReader
-from mergesort import startMergesort
-from insertionsort import startInsertionsort
-from quicksort import quicksort
-import tabulate
+import mergesort
+import insertionsort
+import quicksort
+from pathlib import Path, PureWindowsPath
+from tabulate import tabulate
 
-métricas = []
+global metricas
+metricas = {}
 
 def notificar(indice, valor):
+	global metricas
 	if indice == "comp":
-		global métricas
-		métricas["comp"] += valor
+		metricas["comp"] += valor
 
 	if indice == "mov":
-		global métricas
-		métricas["mov"] += valor
+		metricas["mov"] += valor
 
 
 def main():
-	# Permite alterar as métricas diretamente
-	global métricas
+	# Permite alterar as metricas diretamente
+	global metricas
 
 	# Flag que mantém o loop principal
 	executando = True
@@ -27,9 +29,9 @@ def main():
 	# Loop principal
 	while executando:
 
-		# Zera os valores das métricas
-		métricas["comp"] = 0
-		métricas["mov"] = 0
+		# Zera os valores das metricas
+		metricas["comp"] = 0
+		metricas["mov"] = 0
 
 		print("Digite o número do diretório:")
 		print("1. 1000")
@@ -37,10 +39,12 @@ def main():
 		print("3. 3000")
 		print("4. 5000")
 		print("0. SAIR DO PROGRAMA")
-		folder = input()
+		folder = int(input())
 
 		if folder == 0:
-			print("Saindo do programa")
+			print("Saindo do programa...")
+			executando = False
+			continue
 
 		elif folder > 0 or folder < 5:
 			print("Digite o numero do arquivo:")
@@ -48,7 +52,7 @@ def main():
 			print("2. decrescente.csv")
 			print("3. random.csv")
 			print("0. Voltar ao menu anterior")
-			file_index = input()
+			file_index = int(input())
 
 			if file_index == 0:
 				continue
@@ -61,7 +65,7 @@ def main():
 				print("3. Quick Sort")
 				print("4. Selection Sort")
 				print("0. Voltar ao menu inicial")
-				algo = input()
+				algo = int(input())
 
 				if algo == 0:
 					continue
@@ -90,20 +94,21 @@ def main():
 			file_name += "random.csv"
 
 		with open(Path(file_name)) as file:
-			data = DictReader(file)
+			data = list(DictReader(file))
 
 			if algo == 1:
-				startInsertionsort(data)
+				insertionsort.startInsertionsort(data)
 			elif algo == 2:
-				startMergesort(data)
+				mergesort.startMergesort(data)
 			elif algo == 3:
-				quicksort(data)
+				quicksort.quicksort(data)
 			else:
 				# selectionsort(data)
+				pass
 
 			header = data[0].keys()
 			rows = [x.values() for x in data]
-			print(tabulate.tabulate(rows, header))
+			print(tabulate(rows, header))
 
 
 

@@ -1,4 +1,5 @@
-from main import notificar
+# coding: utf-8
+import main
 
 def startInsertionsort(lista):
 	insertionsort(lista)
@@ -13,23 +14,23 @@ def insertionsort(lista):
 	comprimento = len(lista)
 
 	# Percorre a lista
-	for indice in comprimento:
+	for indice in range(comprimento):
 
 		# Cria uma string de nome completo para usar na comparação
-		nome = lista[indice].first_name + " " + lista[indice].last_name
+		nome = lista[indice]["first_name"] + " " + lista[indice]["last_name"]
 
 		if len(novaLista) == 0:
-			novaLista[0] = lista[indice]
+			novaLista.insert(0, lista[indice])
 			break
 
 		# Percorre os itens já inseridos na nova lista
-		for indiceNL in len(novaLista):
+		for indiceNL in range(len(novaLista)):
 
 			# Cria uma string de nome completo do item da nova lista
-			nomeAtual = novaLista[indiceNL].first_name + " " + novaLista[indiceNL].last_name
+			nomeAtual = novaLista[indiceNL]["first_name"] + " " + novaLista[indiceNL]["last_name"]
 
 			# Adiciona nas métricas a comparação feita.
-			notificar("comp", 1)
+			main.notificar("comp", 1)
 
 			# Encontra o primeiro elemento maior que o que está sendo inserido.
 			if nomeAtual > nome:

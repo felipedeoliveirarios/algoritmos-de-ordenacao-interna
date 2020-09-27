@@ -1,4 +1,5 @@
-from main import notificar
+# coding: utf-8
+import main
 
 # Função de início do Merge Sort sobre uma lista
 def startMergesort(lista):
@@ -44,7 +45,7 @@ def merge(lista, inicio, meio, fim):
 			# Itera o índice da primeira lista.
 			indice1 += 1
 			# Notifica a movimentação para controle de desempenho.
-			notificar("mov", 1)
+			main.notificar("mov", 1)
 		
 		# Caso o item da segunda lista seja maior que o da primeira...
 		else:
@@ -53,10 +54,10 @@ def merge(lista, inicio, meio, fim):
 			# Itera o índice da segunda lista.
 			indice2 += 1
 			# Notifica a movimentação para controle de desempenho.
-			notificar("mov", 1)
+			main.notificar("mov", 1)
 
 		# Notifica a comparação entre elementos para controle de desempenho.
-		notificar("comp", 1)
+		main.notificar("comp", 1)
 		# Itera o índice da lista extra.
 		indice3 += 1
 
@@ -75,4 +76,4 @@ def merge(lista, inicio, meio, fim):
 		indice3 += 3
 
 	# Por fim, a lista inicial assume os valores da lista extra.
- 		lista = listaExtra
+		lista = listaExtra

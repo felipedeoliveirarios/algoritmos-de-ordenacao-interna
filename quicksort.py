@@ -1,4 +1,5 @@
-from main import notificar
+# coding: utf-8
+import main
 
 def quicksort(lista, inicio = 0, fim = None):
     if(fim is None):
@@ -15,7 +16,7 @@ def partition(lista, inicio, fim):
         if lista[j] <= pivo:
             lista[j], lista[i] = lista[i], lista[j]
             i += 1
-            notificar("mov", 1)
+            main.notificar("mov", 1)
     # Coloca o Pivô no lugar
     lista[i], lista[fim] = lista[fim], lista[inicio]
     return i
