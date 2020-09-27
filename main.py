@@ -1,8 +1,8 @@
 # coding: utf-8
-import csv
 from csv import DictReader
 import mergesort
 import insertionsort
+import selectionsort
 import quicksort
 from pathlib import Path, PureWindowsPath
 from tabulate import tabulate
@@ -103,7 +103,7 @@ def main():
 			elif algo == 3:
 				quicksort.quicksort(data)
 			else:
-				# selectionsort(data)
+				selectionsort.selectionsort (data)
 				pass
 
 			header = data[0].keys()
