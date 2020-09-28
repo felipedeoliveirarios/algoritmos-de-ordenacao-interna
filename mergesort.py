@@ -28,8 +28,8 @@ def merge(lista, inicio, meio, fim):
 	indicePrinc = inicio
 
 	# Gera as strings de nomes para a comparação
-	nomeEsq = listaEsq[indiceEsq]["first_name"] + " " + listaEsq[indiceEsq]["last_name"]
-	nomeDir = listaDir[indiceDir]["first_name"] + " " + listaDir[indiceDir]["last_name"]
+	nomeEsq = listaEsq[indiceEsq]["first_name"]
+	nomeDir = listaDir[indiceDir]["first_name"]
 
 	# flag que indica qual dos subvetores foi usado por último
 	flagEsq = True
@@ -51,7 +51,7 @@ def merge(lista, inicio, meio, fim):
 			# Caso ainda haja um próximo elemento na sublista esquerda
 			if indiceEsq < len(listaEsq):
 				# Cria a nova string de nome para a sublista esquerda, para a próxima comparação
-				nomeEsq = listaEsq[indiceEsq]["first_name"] + " " + listaEsq[indiceEsq]["last_name"]
+				nomeEsq = listaEsq[indiceEsq]["first_name"]
 
 		# Caso o item da sublista direita seja maior que da esquerda...
 		else:
@@ -65,7 +65,7 @@ def merge(lista, inicio, meio, fim):
 			# Caso ainda haja um próximo elemento na sublista direita
 			if indiceDir < len(listaDir):
 				# Cria a nova string de nome para a sublista direita, para a próxima comparação
-				nomeDir = listaDir[indiceDir]["first_name"] + " " + listaDir[indiceDir]["last_name"]
+				nomeDir = listaDir[indiceDir]["first_name"]
 
 			# Notifica a movimentação para controle de desempenho.
 			metrics.movimentacao(1)

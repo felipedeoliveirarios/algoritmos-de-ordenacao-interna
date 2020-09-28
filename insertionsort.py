@@ -13,7 +13,7 @@ def insertionsort(lista):
 	for indice in range(comprimento):
 
 		# Cria uma string de nome completo para usar na comparação
-		nome = lista[indice]["first_name"] + " " + lista[indice]["last_name"]
+		nome = lista[indice]["first_name"]
 
 		if len(novaLista) == 0:
 			novaLista.insert(0, lista[indice])
@@ -23,7 +23,7 @@ def insertionsort(lista):
 		for indiceNL in range(len(novaLista)):
 
 			# Cria uma string de nome completo do item da nova lista
-			nomeAtual = novaLista[indiceNL]["first_name"] + " " + novaLista[indiceNL]["last_name"]
+			nomeAtual = novaLista[indiceNL]["first_name"]
 
 			# Encontra o primeiro elemento maior que o que está sendo inserido.
 			if nomeAtual > nome:
@@ -50,7 +50,6 @@ def insertionsort(lista):
 			if indiceNL == len(novaLista)-1:
 				# O elemento é adicionado no fim
 				novaLista.append(lista[indice])
-				metrics.movimentacao(1)
 
 
 			# fim if

@@ -14,10 +14,10 @@ def quicksort(lista, inicio = 0, fim = None):
 def partition(lista, inicio, fim):
     i = (inicio - 1)
     pivot = lista[fim]
-    nome_pivo = lista[fim]["first_name"] + " " + lista[fim]["last_name"]
+    nome_pivo = lista[fim]["first_name"]
 
     for j in range(inicio, fim):
-        auxiliar = lista[j]["first_name"] + " " + lista[j]["last_name"]
+        auxiliar = lista[j]["first_name"]
 
         metrics.comparacao(1)
         if auxiliar <= nome_pivo:
