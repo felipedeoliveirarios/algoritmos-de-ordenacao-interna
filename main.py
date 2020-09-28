@@ -3,9 +3,10 @@ from csv import DictReader
 import mergesort
 import insertionsort
 import selectionsort
-import quicksort
+import Quick_Sort2
 from pathlib import Path, PureWindowsPath
 from tabulate import tabulate
+import time
 
 global metricas
 metricas = {'comp':0, 'mov':0}
@@ -95,20 +96,32 @@ def main():
 
 		with open(Path(file_name)) as file:
 			data = list(DictReader(file))
+			tempo_total = 0
 
 			if algo == 1:
+				start_time = time.time()
 				insertionsort.startInsertionsort(data)
+				tempo_total
 			elif algo == 2:
+				start_time = time.time()
 				mergesort.startMergesort(data)
+				tempo_total
 			elif algo == 3:
-				quicksort.quicksort(data)
+				start_time = time.time()
+				Quick_Sort2.quicksort(data)
+				tempo_total
+
 			else:
+				start_time = time.time()
 				selectionsort.selectionsort (data)
-				pass
+				tempo_total = time.time() - start_time)
 
 			header = data[0].keys()
 			rows = [x.values() for x in data]
 			print(tabulate(rows, header))
+			print(str(metricas["mov"]) + "movimentações.")
+			print(str(metricas["comp"]) + "movimentações.")
+			print("Concluído em %s segundos." % (time.time() - start_time))
 
 
 
