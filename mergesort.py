@@ -1,18 +1,11 @@
 # coding: utf-8
 import main
-import sys
-
-# Função de início do Merge Sort sobre uma lista
-def startMergesort(lista):
-	sys.setrecursionlimit(10**6)
-	mergesort(lista, 0, len(lista))
-
 
 # Implementação recursiva do Merge Sort
 def mergesort(lista, inicio, fim):
 
 	# Condição de parada da recursão (sublista com apenas um elemento)
-	if inicio < fim:
+	if inicio < fim-1:
 		meio = int( (inicio + fim) / 2 )
 
 		mergesort(lista, inicio, meio)
@@ -20,64 +13,80 @@ def mergesort(lista, inicio, fim):
 
 		merge(lista, inicio, meio, fim)
 
-
 # Realiza a fusão de duas sublistas de forma ordenada.
 def merge(lista, inicio, meio, fim):
 
-	# Cria uma lista onde serão inseridos os valores ordenados.
-	listaExtra = lista
+	# Cria listas de backup para as duas partes
+	listaEsq = lista[inicio:meio]
+	listaDir = lista[meio:fim]
 
-	# Declara os índices das duas sublistas e da lista extra.
-	indice1 = inicio
-	indice2 = meio
-	indice3 = inicio
+	# Declara os índices das duas sublistas
+	indiceEsq = 0
+	indiceDir = 0
+
+	# Declara o índice da lista principal
+	indicePrinc = inicio
+
+	# Gera as strings de nomes para a comparação
+	nomeEsq = listaEsq[indiceEsq]["first_name"] + " " + listaEsq[indiceEsq]["last_name"]
+	nomeDir = listaDir[indiceDir]["first_name"] + " " + listaDir[indiceDir]["last_name"]
 
 	# Enquanto nenhuma das sublistas tiver sido totalmente inserida...
-	while indice1 < meio and indice2 < fim:
-		
-		# Concatena nome e sobrenome para usar na ordenação
-		nome1 = lista[indice1]["first_name"] + " " + lista[indice1]["last_name"]
-		nome2 = lista[indice2]["first_name"] + " " + lista[indice2]["last_name"]
-		
+	while indiceEsq < len(listaEsq) and indiceDir < len(listaDir):
+
 		# Compara as strings contendo nome e sobrenome.
-		# Caso o item da primeira lista seja maior ou igual que da segunda...
+		# Caso o item da sublista esquerda seja maior (ou igual) que da direita
+		if nomeEsq <= nomeDir:
+
+			# Insere o item da sublista esquerda na posição correta
+			lista[indicePrinc] = listaEsq[indiceEsq]
+
+			# Itera o índice da lista esquerda.
+			indiceEsq += 1
+
+			# Caso ainda haja um próximo elemento na sublista esquerda
+			if indiceEsq < len(listaEsq):
+				# Cria a nova string de nome para a sublista esquerda, para a próxima comparação
+				nomeEsq = listaEsq[indiceEsq]["first_name"] + " " + listaEsq[indiceEsq]["last_name"]
+
+			# Notifica a movimentação para controle de desempenho.
+			main.movimentacao(1)
+
+		# Caso o item da sublista direita seja maior que da esquerda...
+		else:
+
+			# Insere o item da sublista direita
+			lista[indicePrinc] = listaDir[indiceDir]
+
+			# Itera o índice da segunda lista.
+			indiceDir += 1
+
+			# Caso ainda haja um próximo elemento na sublista direita
+			if indiceDir < len(listaDir):
+				# Cria a nova string de nome para a sublista direita, para a próxima comparação
+				nomeDir = listaDir[indiceDir]["first_name"] + " " + listaDir[indiceDir]["last_name"]
+
+			# Notifica a movimentação para controle de desempenho.
+			main.movimentacao(1)
 
 		# Notifica a comparação entre elementos para controle de desempenho.
-		main.notificar("comp", 1)
+		main.comparacao(1)
 
-		if nome1 >= nome2:
-			# Insere o item da primeira lista na lista extra.
-			listaExtra[indice3] = lista[indice1]
-			# Itera o índice da primeira lista.
-			indice1 += 1
-			# Notifica a movimentação para controle de desempenho.
-			main.notificar("mov", 1)
-		
-		# Caso o item da segunda lista seja maior que o da primeira...
-		else:
-			# Insere o item da segunda lista na lista extra.
-			listaExtra[indice3] = lista[indice2]
-			# Itera o índice da segunda lista.
-			indice2 += 1
-			# Notifica a movimentação para controle de desempenho.
-			main.notificar("mov", 1)
-
-		# Itera o índice da lista extra.
-		indice3 += 1
+		# Itera o índice da lista principal.
+		indicePrinc += 1
 
 	"""
-	Caso uma das listas tenha sido exaurida, a outra será colocada
+	Caso uma das sublistas tenha sido exaurida, a outra será colocada
 	diretamente dentro da lista extra.
 	"""
-	while indice1 < meio:
-		listaExtra[indice3] = lista[indice1]
-		indice1 += 1
-		indice3 += 3
+	while indiceEsq < len(listaEsq):
+		lista[indicePrinc] = listaEsq[indiceEsq]
 
-	while indice2 < fim:
-		listaExtra[indice3] = lista[indice2]
-		indice2 += 1
-		indice3 += 3
+		indiceEsq += 1
+		indicePrinc += 1
 
-	# Por fim, a lista inicial assume os valores da lista extra.
-		lista = listaExtra
+	while indiceDir < len(listaDir):
+		lista[indicePrinc] = listaDir[indiceDir]
+
+		indiceDir += 1
+		indicePrinc += 1

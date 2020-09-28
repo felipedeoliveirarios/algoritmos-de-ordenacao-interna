@@ -19,12 +19,12 @@ def partition(lista, inicio, fim):
     for j in range(inicio, fim):
         auxiliar = lista[j]["first_name"] + " " + lista[j]["last_name"]
 
-        main.notificar("comp", 1)
+        main.comparacao(1)
         if auxiliar <= nome_pivo:
             i = i + 1
-            main.notificar("mov", 1)
+            main.movimentacao(1)
             lista[i], lista[j] = lista[j], lista[i]
 
-    main.notificar("mov", 1)
+    main.movimentacao(1)
     lista[i + 1], lista[fim] = lista[fim], lista[i + 1]
     return (i + 1)

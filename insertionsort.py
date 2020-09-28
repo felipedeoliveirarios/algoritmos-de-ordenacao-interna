@@ -2,7 +2,7 @@
 import main
 
 def insertionsort(lista):
-
+	
 	# Cria uma nova lista onde os itens serão inseridos de forma ordenada
 	novaLista = []
 
@@ -26,7 +26,7 @@ def insertionsort(lista):
 			nomeAtual = novaLista[indiceNL]["first_name"] + " " + novaLista[indiceNL]["last_name"]
 
 			# Adiciona nas métricas a comparação feita.
-			main.notificar("comp", 1)
+			main.comparacao(1)
 
 			# Encontra o primeiro elemento maior que o que está sendo inserido.
 			if nomeAtual > nome:
@@ -36,7 +36,7 @@ def insertionsort(lista):
 				partir de novaLista[indiceNL] para frente).
 				"""
 				novaLista.insert(indiceNL, lista[indice])
-				main.notificar("mov", 1)
+				main.movimentacao(1)
 				# Para de percorrer a nova lista
 				break
 
@@ -47,7 +47,7 @@ def insertionsort(lista):
 			if indiceNL == len(novaLista)-1:
 				# O elemento é adicionado no fim
 				novaLista.append(lista[indice])
-				main.notificar("mov", 1)
+				main.movimentacao(1)
 
 
 			# fim if

@@ -7,53 +7,55 @@ import Quick_Sort2
 from pathlib import Path, PureWindowsPath
 from tabulate import tabulate
 import time
+import sys
 
-global metricas
-metricas = {'comp':0, 'mov':0}
+comp = 0
+mov = 0
 
-def notificar(indice, valor):
-	global metricas
-	if indice == "comp":
-		metricas["comp"] += valor
+def comparacao(valor):
+	global comp
+	comp += valor
 
-	if indice == "mov":
-		metricas["mov"] += valor
-
+def movimentacao(valor):
+	global mov
+	mov += valor
 
 def main():
 	# Permite alterar as metricas diretamente
-	global metricas
+	global comp, mov
+
+	# Aumenta o limite de recursão padrão
+	sys.setrecursionlimit(10**6)
 
 	# Flag que mantém o loop principal
 	executando = True
 
 	# Loop principal
 	while executando:
-
-		# Zera os valores das metricas
-		metricas["comp"] = 0
-		metricas["mov"] = 0
-
 		print("Digite o número do diretório:")
-		print("1. 1000")
-		print("2. 2000")
-		print("3. 3000")
-		print("4. 5000")
-		print("0. SAIR DO PROGRAMA")
+		print(" 1 |\t./1000/")
+		print(" 2 |\t./2000/")
+		print(" 3 |\t./3000/")
+		print(" 4 |\t./5000/")
+		print("   |")
+		print(" 0 |\tSAIR DO PROGRAMA")
 		folder = int(input())
+		print()
 
 		if folder == 0:
-			print("Saindo do programa...")
+			print("FINALIZANDO EXECUÇÃO...")
 			executando = False
 			continue
 
 		elif folder > 0 or folder < 5:
 			print("Digite o numero do arquivo:")
-			print("1. crescente.csv")
-			print("2. decrescente.csv")
-			print("3. random.csv")
-			print("0. Voltar ao menu anterior")
+			print(" 1 |\t./crescente.csv")
+			print(" 2 |\t./decrescente.csv")
+			print(" 3 |\t./random.csv")
+			print("   |")
+			print(" 0 |\tVOLTAR")
 			file_index = int(input())
+			print()
 
 			if file_index == 0:
 				continue
@@ -61,12 +63,14 @@ def main():
 				print("Opção inválida.")
 			else:
 				print("Digite a opção do algoritmo de ordenação")
-				print("1. Insertion Sort")
-				print("2. Merge Sort")
-				print("3. Quick Sort")
-				print("4. Selection Sort")
-				print("0. Voltar ao menu inicial")
+				print(" 1 |\tInsertion Sort")
+				print(" 2 |\tMerge Sort")
+				print(" 3 |\tQuick Sort")
+				print(" 4 |\tSelection Sort")
+				print("   |")
+				print(" 0 |\tMENU INICIAL")
 				algo = int(input())
+				print()
 
 				if algo == 0:
 					continue
@@ -100,28 +104,32 @@ def main():
 
 			if algo == 1:
 				start_time = time.time()
-				insertionsort.startInsertionsort(data)
-				tempo_total
+				data = insertionsort.insertionsort(data)
+				tempo_total = (time.time() - start_time)
 			elif algo == 2:
 				start_time = time.time()
-				mergesort.startMergesort(data)
-				tempo_total
+				mergesort.mergesort(data, 0, len(data))
+				tempo_total = (time.time() - start_time)
 			elif algo == 3:
 				start_time = time.time()
 				Quick_Sort2.quicksort(data)
-				tempo_total
+				tempo_total = (time.time() - start_time)
 
 			else:
 				start_time = time.time()
 				selectionsort.selectionsort (data)
-				tempo_total = time.time() - start_time)
+				tempo_total = (time.time() - start_time)
 
 			header = data[0].keys()
 			rows = [x.values() for x in data]
+			print("\n##############################################################################################")
 			print(tabulate(rows, header))
-			print(str(metricas["mov"]) + "movimentações.")
-			print(str(metricas["comp"]) + "movimentações.")
-			print("Concluído em %s segundos." % (time.time() - start_time))
+			print("##############################################################################################\n")
+			print("Concluído em {} segundos, com {} comparações e {} movimentações.".format(tempo_total, comp, mov) )
+
+		# Zera os valores das metricas
+		comp = 0
+		mov = 0
 
 
 
