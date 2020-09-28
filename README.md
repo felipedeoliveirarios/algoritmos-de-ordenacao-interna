@@ -1,6 +1,7 @@
 # Algoritmos de Ordenação Interna
-Repositório criado para desenvolver as atividades para a disciplina de Estrutura de Dados 2 conforme proposta.
+Repositório criado para desenvolver as atividades para a disciplina de Estrutura de Dados 2 conforme proposta. A aplicação foi desenvolvida em python 3.
 
+As bibliotecas requeridas para executar o programa podem ser instaladas automaticamente através do comando `pip3 install -r requirements.txt`. Para executar o programa, usar `python3 main.py`.
 
 O diretório contém os scripts bash `upload.sh` e `download.sh` que podem ser executados através do comando `bash upload.sh` ou `bash download.sh` que automatizam o procedimento de commit+push e merge+pull do diretório.
 
