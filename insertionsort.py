@@ -1,10 +1,6 @@
 # coding: utf-8
 import main
 
-def startInsertionsort(lista):
-	insertionsort(lista)
-
-
 def insertionsort(lista):
 
 	# Cria uma nova lista onde os itens serão inseridos de forma ordenada
@@ -21,7 +17,7 @@ def insertionsort(lista):
 
 		if len(novaLista) == 0:
 			novaLista.insert(0, lista[indice])
-			break
+			continue
 
 		# Percorre os itens já inseridos na nova lista
 		for indiceNL in range(len(novaLista)):
@@ -50,7 +46,7 @@ def insertionsort(lista):
 			"""
 			if indiceNL == len(novaLista)-1:
 				# O elemento é adicionado no fim
-				novaLista.append(indiceNL, lista[indice])
+				novaLista.append(lista[indice])
 				main.notificar("mov", 1)
 
 
@@ -59,4 +55,4 @@ def insertionsort(lista):
 	# fim for indice
 
 	# Troca a lista pela nova lista, agora ordenada.
-	lista = novaLista
+	return novaLista
