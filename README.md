@@ -10,7 +10,7 @@ O diretório contém os scripts bash `upload.sh` e `download.sh` que podem ser e
 #### Comandos úteis do git
 | Comando | Efeito | 
 |---------|--------|
-| `git config --global user.name "[seu_username]"` | Automatiza o uso do seu username nos commits. |
+| `git config credential.helper store` | Configura o git para manter seu nome de usuário e senha salvo para usos futuros (neste repositório). |
 | `git clone [link_do_repositório]` | Clona um repositório do github na pasta atual. |
 | `git add [caminho_relativo_do_arquivo]` | Adiciona um arquivo ao repositório. |
 | `git rm [caminho_relativo_do_arquivo]` | Remove um arquivo do repositório. |
