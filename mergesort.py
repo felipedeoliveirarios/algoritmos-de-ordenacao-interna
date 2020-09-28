@@ -1,5 +1,5 @@
 # coding: utf-8
-import main
+import metrics
 
 # Implementação recursiva do Merge Sort
 def mergesort(lista, inicio, fim):
@@ -31,6 +31,10 @@ def merge(lista, inicio, meio, fim):
 	nomeEsq = listaEsq[indiceEsq]["first_name"] + " " + listaEsq[indiceEsq]["last_name"]
 	nomeDir = listaDir[indiceDir]["first_name"] + " " + listaDir[indiceDir]["last_name"]
 
+	# flag que indica qual dos subvetores foi usado por último
+	flagEsq = True
+
+
 	# Enquanto nenhuma das sublistas tiver sido totalmente inserida...
 	while indiceEsq < len(listaEsq) and indiceDir < len(listaDir):
 
@@ -49,9 +53,6 @@ def merge(lista, inicio, meio, fim):
 				# Cria a nova string de nome para a sublista esquerda, para a próxima comparação
 				nomeEsq = listaEsq[indiceEsq]["first_name"] + " " + listaEsq[indiceEsq]["last_name"]
 
-			# Notifica a movimentação para controle de desempenho.
-			main.movimentacao(1)
-
 		# Caso o item da sublista direita seja maior que da esquerda...
 		else:
 
@@ -67,10 +68,10 @@ def merge(lista, inicio, meio, fim):
 				nomeDir = listaDir[indiceDir]["first_name"] + " " + listaDir[indiceDir]["last_name"]
 
 			# Notifica a movimentação para controle de desempenho.
-			main.movimentacao(1)
+			metrics.movimentacao(1)
 
 		# Notifica a comparação entre elementos para controle de desempenho.
-		main.comparacao(1)
+		metrics.comparacao(1)
 
 		# Itera o índice da lista principal.
 		indicePrinc += 1

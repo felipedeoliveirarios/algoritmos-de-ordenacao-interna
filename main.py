@@ -1,29 +1,19 @@
 # coding: utf-8
+
 from csv import DictReader
+from pathlib import Path, PureWindowsPath
+from tabulate import tabulate
+
+import time
+import sys
+
 import mergesort
 import insertionsort
 import selectionsort
 import Quick_Sort2
-from pathlib import Path, PureWindowsPath
-from tabulate import tabulate
-import time
-import sys
-
-comp = 0
-mov = 0
-
-def comparacao(valor):
-	global comp
-	comp += valor
-
-def movimentacao(valor):
-	global mov
-	mov += valor
+import metrics
 
 def main():
-	# Permite alterar as metricas diretamente
-	global comp, mov
-
 	# Aumenta o limite de recursão padrão
 	sys.setrecursionlimit(10**6)
 
@@ -125,11 +115,10 @@ def main():
 			print("\n##############################################################################################")
 			print(tabulate(rows, header))
 			print("##############################################################################################\n")
-			print("Concluído em {} segundos, com {} comparações e {} movimentações.".format(tempo_total, comp, mov) )
+			print("Concluído em {} segundos, com {} comparações e {} movimentações.".format(tempo_total, metrics.comp, metrics.mov) )
 
 		# Zera os valores das metricas
-		comp = 0
-		mov = 0
+		metrics.resetmetrics()
 
 
 

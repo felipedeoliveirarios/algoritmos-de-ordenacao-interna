@@ -1,5 +1,5 @@
 # coding: utf-8
-import main
+import metrics
 
 def insertionsort(lista):
 	
@@ -25,9 +25,6 @@ def insertionsort(lista):
 			# Cria uma string de nome completo do item da nova lista
 			nomeAtual = novaLista[indiceNL]["first_name"] + " " + novaLista[indiceNL]["last_name"]
 
-			# Adiciona nas métricas a comparação feita.
-			main.comparacao(1)
-
 			# Encontra o primeiro elemento maior que o que está sendo inserido.
 			if nomeAtual > nome:
 
@@ -36,9 +33,15 @@ def insertionsort(lista):
 				partir de novaLista[indiceNL] para frente).
 				"""
 				novaLista.insert(indiceNL, lista[indice])
-				main.movimentacao(1)
+
+				# Adiciona movimentações para os deslocamentos dos elementos do vetor
+				metrics.movimentacao( (len(lista) - indiceNL) )
+
 				# Para de percorrer a nova lista
 				break
+
+			# Adiciona nas métricas a comparação feita.
+			metrics.comparacao(1)
 
 			"""
 			Caso toda a nova lista tenha sido percorrida e não tenha sido
@@ -47,7 +50,7 @@ def insertionsort(lista):
 			if indiceNL == len(novaLista)-1:
 				# O elemento é adicionado no fim
 				novaLista.append(lista[indice])
-				main.movimentacao(1)
+				metrics.movimentacao(1)
 
 
 			# fim if
